@@ -9,7 +9,11 @@ export class AppComponent {
   name:string = "Julien";
 
   constructor() {
-    console.log(123)
-    this.name = 'Bob';
+    this.changeName('Ted');
+  }
+
+  // :void means it doesn't return anything
+  changeName(name:string):void {
+    this.name = name;
   }
 }
