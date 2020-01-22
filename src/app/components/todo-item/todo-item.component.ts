@@ -14,11 +14,11 @@ export class TodoItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  // Set Dynamic Classes
+  // Set Dynamic Classes. We always want the todo to have the class of todo, but we want it to have the is-complete class only if the completed property of that todo is true
   setClasses() {
     let classes = {
       todo: true,
-      'is-complete': this.todo.completed
+      'is-complete': this.todo.completed // Put it in quotes because of the hypen
     }
 
     return classes;
