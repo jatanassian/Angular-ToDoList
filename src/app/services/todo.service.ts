@@ -1,30 +1,21 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+import { Todo } from '../models/Todo';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
+  // Add the url as a property of this class
+  todosUrl: 'https://jsonplaceholder.typicode.com/todos';
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
-  getTodos() {
-    return [
-      {
-        // With typescript, the app pays attention to the field and its type as well. If we change 'false' from completed by '1' it will show an error.
-        id: 1,
-        title: 'Todo One',
-        completed: false
-      },
-      {
-        id: 2,
-        title: 'Todo Two',
-        completed: true
-      },
-      {
-        id: 3,
-        title: 'Todo Three',
-        completed: false
-      }
-    ];
+  // Method that makes the get request just like axios or the fetch api.
+  // With '<Todo[]>' we're specifying that it's gonna be a Todo type and an array.
+  getTodos():Observable<Todo[]> {
+    return this.http.get<Todo[]>(this.todosUrl);
   }
 }
