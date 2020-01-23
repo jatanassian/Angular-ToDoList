@@ -15,6 +15,7 @@ export class TodoService {
 
   // Method that makes the get request just like axios or the fetch api.
   // With '<Todo[]>' we're specifying that it's gonna be a Todo type and an array.
+  // The Observable is an asynchronous data flow. Like a  promise. On the client we'll then subscribe to that Observable which is like a '.then' in js.
   getTodos():Observable<Todo[]> {
     return this.http.get<Todo[]>(this.todosUrl);
   }
