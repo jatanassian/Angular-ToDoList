@@ -4,6 +4,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Todo } from '../models/Todo';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,5 +26,12 @@ export class TodoService {
   // The Observable is an asynchronous data flow. Like a  promise. On the client we'll then subscribe to that Observable which is like a '.then' in js.
   getTodos():Observable<Todo[]> {
     return this.http.get<Todo[]>(`${this.todosUrl}${this.todosLimit}`);
+  }
+
+  // Put request when the checkbox is toggled
+  // The type of the Observable is <any> because it won't be and exact Todo (it will have an user id)
+  toggleCompleted(todo:Todo):Observable<any> {
+    const url = `${this.todosUrl}/${todo.id}`;
+    return this.http.put(url, todo, httpOptions)
   }
 }
