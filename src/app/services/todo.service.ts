@@ -28,6 +28,12 @@ export class TodoService {
     return this.http.get<Todo[]>(`${this.todosUrl}${this.todosLimit}`);
   }
 
+  // Delete Todo
+  deleteTodo(todo:Todo):Observable<Todo> {
+    const url = `${this.todosUrl}/${todo.id}`;
+    return this.http.delete<Todo>(url, httpOptions);
+  }
+
   // Put request when the checkbox is toggled
   // The type of the Observable is <any> because it won't be and exact Todo (it will have an user id)
   toggleCompleted(todo:Todo):Observable<any> {
