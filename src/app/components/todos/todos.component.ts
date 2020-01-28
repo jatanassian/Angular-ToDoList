@@ -22,7 +22,7 @@ export class TodosComponent implements OnInit {
   }
 
   deleteTodo(todo:Todo) {
-    console.log('delete');
+    this.todos = this.todos.filter(t => t.id !== todo.id); // Delete the todo from the UI (client side)
   }
 
 }
