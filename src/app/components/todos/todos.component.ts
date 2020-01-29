@@ -26,4 +26,11 @@ export class TodosComponent implements OnInit {
     this.todoService.deleteTodo(todo).subscribe(); // Delete from the server
   }
 
+  addTodo(todo:Todo) {
+    // Add the todo to the UI once we have the response from the Observable
+    this.todoService.addTodo(todo).subscribe(todo => {
+      this.todos.push(todo);
+    });
+  }
+
 }
